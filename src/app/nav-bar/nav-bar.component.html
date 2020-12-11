@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand navbar-dark bg-danger">
+  <a class="navbar-brand" href="/">Angular</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [hidden]="!authService.user">
+        <a class="nav-link" routerLink="/main">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" [hidden]="authService.user">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li class="nav-item" [hidden]="authService.user">
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+

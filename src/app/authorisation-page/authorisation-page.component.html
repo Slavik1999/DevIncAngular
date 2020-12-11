@@ -1,0 +1,24 @@
+<div class="container d-flex justify-content-center">
+  <form class="authForm mt-5 p-4 col-6">
+    <h3>Login</h3>
+    <div class="form-group pt-2">
+      <span>{{error}}</span>
+      <label for="regEmail">Email address</label>
+      <input type="email" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
+             id="regEmail" aria-describedby="emailHelp" placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+      <label for="regPassword">Password</label>
+      <input type="password" class="form-control" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
+             id="regPassword" placeholder="Enter your password">
+    </div>
+    <button type="submit" (click)="SignIn()" class="btn btn-danger mr-1">Enter</button>
+    <div class="spinner-border text-danger ml-2" [hidden]="!loading" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="mt-1">
+      <button (click)="googleAuth()" class="btn btn-info">Google</button>
+    </div>
+  </form>
+
+</div>
