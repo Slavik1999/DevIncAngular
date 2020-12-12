@@ -20,8 +20,23 @@ export class AuthService {
   isLoggedIn = false;
   user: User = null;
   constructor(
-    public afAuth: AngularFireAuth
-  ) {}
+    public afAuth: AngularFireAuth,
+    public router: Router
+  ) {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = user;
+        this.isLoggedIn = true;
+        localStorage.setItem('user', JSON.stringify(this.user));
+        JSON.parse(localStorage.getItem('user'));
+        this.router.navigate(['main']);
+      } else {
+        this.isLoggedIn = false;
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
+      }
+    });
+  }
 
   SignUp(email, password): any {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
@@ -45,4 +60,13 @@ export class AuthService {
     const provider = new firebase.auth.GithubAuthProvider();
     return  this.afAuth.signInWithPopup(provider);
   }
+
+  SignOut(): void{
+    this.afAuth.signOut().then(() => {
+      this.isLoggedIn = false;
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+
 }

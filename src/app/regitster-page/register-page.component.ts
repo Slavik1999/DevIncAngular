@@ -26,7 +26,6 @@ export class RegisterPageComponent implements OnInit {
     this.email = '';
     this.password = '';
     this.authService.isLoggedIn = true;
-    this.router.navigate(['/main']);
     this.authService.user = {
       email: cred.user.email
     };
@@ -50,26 +49,4 @@ export class RegisterPageComponent implements OnInit {
     }, 4000);
   }
 
-  // googleAuth(): void {
-  //   this.authService.GoogleAuth().then(cred => {
-  //     this.onSuccessAuth(cred);
-  //   }).catch(error => {
-  //     this.error = error.message;
-  //   });
-  // }
-  // facebookAuth(): void{
-  //   this.authService.FacebookAuth().then(cred => {
-  //     this.onSuccessAuth(cred);
-  //   }).catch(error => {
-  //     this.error = error.message;
-  //   });
-  // }
-  //
-  // githubAuth(): void{
-  //   this.authService.GithubAuth().then(cred => {
-  //     this.onSuccessAuth(cred);
-  //   }).catch(error => {
-  //     this.error = error.message;
-  //   });
-  // }
 }
