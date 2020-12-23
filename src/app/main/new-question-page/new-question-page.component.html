@@ -1,0 +1,27 @@
+<div class='container newQuestionContainer d-flex flex-column align-items-center'>
+    <form class='newQuestionForm p-5 mt-5' (ngSubmit)="submit()" [formGroup]="form">
+        <div class="newQuestionHeader d-flex justify-content-center">
+            <h1 class='text-center pb-2'>New question</h1>
+        </div>
+        <div class="form-group mt-2">
+          <label for="exampleFormControlInput1">Title</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="title">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Text</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="text"></textarea>
+        </div>
+        <div class="form-group">
+            <span>Tags:</span>
+            <div class="form-check" *ngFor="let category of categories">
+                <input class="form-check-input" type="checkbox" id=`newQuestion{{category}}` value={{category}}
+                       (change)="onChange($event.target.value, $event.target.checked)">
+                <label class="form-check-label" for=`newQuestion{{category}}`>{{category}}</label>
+            </div>
+        </div>
+        <div class="form-group d-flex justify-content-end mr-3">
+            <button class='btn btn-success mr-1' [disabled]="!form.value.tags.length || form.invalid">OK</button>
+            <button class='btn btn-danger'>Cancel</button>
+        </div>
+    </form>
+</div>

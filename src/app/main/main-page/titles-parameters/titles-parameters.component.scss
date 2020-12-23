@@ -1,0 +1,16 @@
+.titlesParameters {
+	height: 60px;
+	min-width: 240px;
+	border-radius: 5px;
+	background-color: #d9d8d8;
+	.dropdown-toggle {
+		margin-right: 10px;
+	}
+}
+.dropdown-menu.show {
+	padding: 5px 0px 0px 10px;
+	margin: 0px;
+}
+.form-check {
+	padding-left: 30px;
+}

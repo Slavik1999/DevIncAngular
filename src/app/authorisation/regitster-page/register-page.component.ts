@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 
 interface User {
@@ -25,10 +25,9 @@ export class RegisterPageComponent implements OnInit {
   onSuccessAuth(cred): void{
     this.email = '';
     this.password = '';
-    this.authService.isLoggedIn = true;
-    this.authService.user = {
-      email: cred.user.email
-    };
+    // this.authService.isLoggedIn = true;
+    this.authService.user = cred.user;
+    this.router.navigate(['']);
   }
 
   SignUp(): void{

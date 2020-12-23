@@ -1,0 +1,14 @@
+$borderColor: rgb(125, 124, 124);
+.newQuestionHeader {
+	h1 {
+		color: rgb(59, 59, 59);
+		width: 85%;
+		border-bottom: 2px solid $borderColor;
+	}
+}
+.newQuestionForm {
+	min-width: 300px;
+	width: 70%;
+	border: 2px solid $borderColor;
+	border-radius: 5px;
+}

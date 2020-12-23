@@ -1,0 +1,19 @@
+.plustButton {
+	position: fixed;
+	opacity: 75%;
+	bottom: 5%;
+	right: 3%;
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	border: 2px solid rgb(74, 74, 74);
+	transition: all 0.3s;
+	text-align: center;
+	&:hover {
+		opacity: 1;
+	}
+	&:active,
+	&:focus {
+		outline: none;
+	}
+}

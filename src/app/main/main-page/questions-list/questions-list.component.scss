@@ -1,0 +1,21 @@
+$border: 2px solid #686868;
+.questionsList{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.questionsListItem{
+  height: 200px;
+  border: $border;
+  border-radius: 3px;
+}
+
+.questionMiddle{
+  border-top: $border;
+  border-bottom: $border;
+}
+
+.questionTitle{
+  font-size: 26px;
+  font-weight: 600;
+}
