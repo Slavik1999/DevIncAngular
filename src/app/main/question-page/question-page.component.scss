@@ -1,0 +1,36 @@
+$borderColor: rgb(125, 124, 124);
+.questionContainer{
+  border: 2px solid $borderColor;
+  border-radius: 5px;
+  h1 {
+    color: rgb(59, 59, 59);
+    width: 85%;
+    border-bottom: 2px solid $borderColor;
+  }
+  .text{
+    width: 90%;
+  }
+  .buttonsContainer{
+    min-width: 50px;
+  }
+  .tagsContainer{
+    .tag{
+      border-right: 2px solid $borderColor;
+    }
+  }
+}
+.commentsContainer{
+  border: 2px solid $borderColor;
+  border-radius: 5px;
+  .commentContainer{
+    border: 2px solid $borderColor;
+    border-radius: 5px;
+    @media (max-width: 500px) {
+      flex-wrap: wrap;
+    }
+  }
+  .img{
+    width: 70px;
+    height: 50px;
+  }
+}

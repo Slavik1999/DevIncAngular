@@ -1,0 +1,77 @@
+<div class="container" *ngIf="this.question">
+  <div class="questionContainer mt-4 pr-5 pl-5 pt-3 pb-4">
+    <div class="row d-flex justify-content-between">
+      <span class="author">{{this.question.author.split('@')[0]}}</span>
+      <div class="d-flex flex-column align-items-center">
+        <span class="date">{{this.question.date.seconds * 1000 | date: 'dd.MM.YYYY'}}</span>
+        <span *ngIf="question.isResolved" class="badge badge-success">resolved</span>
+      </div>
+    </div>
+    <div class="row titleContainer d-flex justify-content-center">
+      <h1 class='text-center pb-3'>{{this.question.title}}</h1>
+    </div>
+    <div class="row d-flex justify-content-center mt-3 mb-3">
+      <p class="text">{{this.question.text}}</p>
+    </div>
+    <div class="row bottomRow d-flex flex-nowrap justify-content-between">
+      <div class="tagsContainer d-flex flex-wrap">
+        <span class="d-flex align-items-center pr-1 mr-1" *ngFor="let tag of this.question.tags">{{tag}}</span>
+      </div>
+      <div class="buttonsContainer d-flex flex-wrap justify-content-end w-50">
+        <button class="btn btn-warning" *ngIf="this.authService.user.email === this.question.author"
+                (click)="this.router.navigate(['newquestion/' + this.question.id])"
+        >Edit</button>
+      </div>
+    </div>
+  </div>
+  <div class="commentsContainer pr-4 pl-4 pt-2">
+    <div class="row">
+      <span class="mb-2">Comments/Answers</span>
+    </div>
+    <div *ngIf="!this.question.comments.length">
+      There are no comments here...
+    </div>
+    <div class="commentContainer d-flex justify-content-between  p-2 mb-3"  *ngFor="let comment of this.question.comments">
+      <div class="d-flex">
+        <div class="userInfoContainer d-flex flex-column justify-content-start align-items-start mr-3">
+          <img class="img" [src]='this.profileImg' alt=""/>
+          <span class="commentAuthor">
+          {{comment.author.split('@')[0]}}
+        </span>
+        </div>
+        <div class="commentText mr-3 mt-3">
+          {{comment.text}}
+        </div>
+      </div>
+      <div class="commentInfo mt-3">
+        <span>{{comment.date.seconds * 1000 | date: 'dd.MM.YYYY'}}</span>
+        <form class="mt-2" *ngIf="this.question.author === this.authService.user.email else resolve">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox"
+                   id='resolve'
+                   [checked]="comment.isResolve"
+                   (change)="onChange($event.target.value, $event.target.checked, comment.date)"
+            >
+            <label class="form-check-label" for='resolve'>resolve</label>
+          </div>
+        </form>
+        <ng-template #resolve>
+          <div *ngIf="comment.isResolve">
+            <span class="badge badge-success">solution</span>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <form class='newQuestionForm' (ngSubmit)="submit()" [formGroup]="form">
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Text</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  formControlName="text"
+        ></textarea>
+      </div>
+      <div class="form-group d-flex justify-content-end mr-3">
+        <button class='btn btn-success mr-1' [disabled]="form.invalid">Send</button>
+      </div>
+    </form>
+  </div>
+</div>

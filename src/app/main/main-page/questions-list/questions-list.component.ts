@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
 import { QuestionService } from '../../../shared/services/question.service';
+import {Router} from '@angular/router';
 
 interface Question {
   [index: number]: {
@@ -16,9 +17,9 @@ interface Question {
   styleUrls: [ './questions-list.component.scss' ]
 })
 export class QuestionsListComponent implements OnInit {
-  constructor(private authService: AuthService, public questionService: QuestionService) {}
+  constructor(private authService: AuthService, public questionService: QuestionService, public router: Router) {}
 
   ngOnInit(): void {
-    this.questionService.getQuetions();
+    this.questionService.getQuetions().then(res => console.log(res));
   }
 }

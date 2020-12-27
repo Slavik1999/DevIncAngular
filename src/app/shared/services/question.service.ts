@@ -27,8 +27,19 @@ export class QuestionService {
     return firebase.firestore().collection('questions').get().then((res: any) => {
       return (this.questions = res.docs.map((question) => {
         const q = question.data();
-        return { ...q, id: q.id } as Question;
+        return { ...q, id: question.id } as Question;
       }));
+    });
+  }
+  getQuestion(id): Promise<Question>{
+    return firebase.firestore().collection('questions').doc(`${id}`).get().then((res: any) => {
+      return {...res.data(), id: res.id};
+    });
+  }
+
+  updateQuestion(id, question): any{
+    return firebase.firestore().collection('questions').doc(`${id}`).update(question).then((res: any) => {
+      return res;
     });
   }
 }

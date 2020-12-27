@@ -5,17 +5,25 @@
         </div>
         <div class="form-group mt-2">
           <label for="exampleFormControlInput1">Title</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="title">
+          <input type="text" class="form-control" id="exampleFormControlInput1"
+                 formControlName="title"
+                 [value]="this.question ? this.question.title : ''"
+          >
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Text</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="text"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    formControlName="text"
+                    [value]="this.question ? this.question.text : ''"
+          ></textarea>
         </div>
         <div class="form-group">
             <span>Tags:</span>
-            <div class="form-check" *ngFor="let category of categories">
+            <div class="form-check" *ngFor="let category of this.categories">
                 <input class="form-check-input" type="checkbox" id=`newQuestion{{category}}` value={{category}}
-                       (change)="onChange($event.target.value, $event.target.checked)">
+                       (change)="onChange($event.target.value, $event.target.checked)"
+                       [checked]="this.isChecked(category)"
+                       >
                 <label class="form-check-label" for=`newQuestion{{category}}`>{{category}}</label>
             </div>
         </div>
@@ -25,3 +33,4 @@
         </div>
     </form>
 </div>
+

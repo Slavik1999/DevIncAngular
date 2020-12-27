@@ -24,6 +24,7 @@ import { AddQuestionButtonComponent } from './main/main-page/add-question-button
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { PlusButtonComponent } from './main/main-page/plus-button/plus-button.component';
 import { NewQuestionPageComponent } from './main/new-question-page/new-question-page.component';
+import { QuestionPageComponent } from './main/question-page/question-page.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NewQuestionPageComponent } from './main/new-question-page/new-question-
     FooterComponent,
     PlusButtonComponent,
     NewQuestionPageComponent,
+    QuestionPageComponent,
   ],
   imports: [
     BrowserModule,

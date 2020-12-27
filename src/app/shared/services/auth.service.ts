@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn = false;
   user: User = undefined;
   constructor(public afAuth: AngularFireAuth, public router: Router) {
     this.afAuth.authState.subscribe((user) => {
@@ -40,15 +39,7 @@ export class AuthService {
     const provider = new firebase.auth.GithubAuthProvider();
     return this.afAuth.signInWithPopup(provider);
   }
-  SignOut(): void {
-    this.afAuth
-      .signOut()
-      .then(() => {
-        this.user = null;
-        this.isLoggedIn = false;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  SignOut(): any {
+    return this.afAuth.signOut();
   }
 }

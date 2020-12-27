@@ -13,13 +13,14 @@
       <li class="nav-item">
         <a class='navAddQstnBtn nav-link btn btn-light' routerLink='/newquestion'>Add question</a>
       </li>
-      <li class="nav-item dropdown ml-2">
+      <li class="nav-item d-flex flex-wrap justify-content-center dropdown ml-2">
+        <img class="profileImg" [src]="this.profileImg" alt=""/>
         <div class="dropdown">
           <p class="navUserBtn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{this.authService.user.email.split('@')[0]}}
           </p>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" routerLink="login" (click)='this.authService.SignOut()'>Sign Out</a>
+            <a class="dropdown-item" routerLink="login" (click)='this.signOut()'>Sign Out</a>
             <a class="dropdown-item" routerLink="#">Profile</a>
           </div>
         </div>

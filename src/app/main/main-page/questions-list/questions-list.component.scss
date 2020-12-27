@@ -2,20 +2,33 @@ $border: 2px solid #686868;
 .questionsList{
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 0.2fr));
 }
 .questionsListItem{
-  height: 200px;
+  min-height: 200px;
   border: $border;
   border-radius: 3px;
 }
 
+
 .questionMiddle{
   border-top: $border;
-  border-bottom: $border;
+
 }
 
 .questionTitle{
   font-size: 26px;
   font-weight: 600;
+  color: #2b2b2b;
+  text-decoration: none;
+  transition: all 0.5s;
+  width:inherit;
+  overflow-wrap: break-word;
+  &:hover{
+    color: black;
+  }
+}
+
+.questionBtns{
+  border-top: $border;
 }

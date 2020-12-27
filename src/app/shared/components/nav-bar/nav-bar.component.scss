@@ -2,6 +2,16 @@
 	float: right !important;
 }
 
+.profileImg{
+  width: 45px;
+  height: 35px;
+}
+.dropdown{
+  &:hover{
+    cursor: pointer;
+  }
+}
+
 .navUserBtn {
 	background-color: transparent;
 	border: transparent;
@@ -9,6 +19,7 @@
 	margin-top: 2px;
 	padding: 6px;
 	color: rgb(221, 221, 221);
+  overflow-wrap: break-word;
 }
 
 .navAddQstnBtn {

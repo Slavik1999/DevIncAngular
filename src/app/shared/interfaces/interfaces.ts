@@ -7,9 +7,16 @@ interface Question {
   text: string;
   tags: string[];
   onModeration: boolean;
-  user: string;
+  author: string;
   isResolved: boolean;
   date: Date;
+  comments: Comment[];
+}
+interface Comment {
+  date: Date;
+  isResolve: boolean;
+  author: string;
+  text: string;
 }
 
-export {User, Question};
+export {User, Question, Comment};
