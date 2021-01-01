@@ -1,5 +1,5 @@
-<div class="container" *ngIf="this.question">
-  <div class="questionContainer mt-4 pr-5 pl-5 pt-3 pb-4">
+<div class="containerAll {{this.filtersService.theme}} pt-4" >
+  <div class="questionContainer {{this.filtersService.theme}} container  pr-5 pl-5 pt-3 pb-4" *ngIf="this.question">
     <div class="row d-flex justify-content-between">
       <span class="author">{{this.question.author.split('@')[0]}}</span>
       <div class="d-flex flex-column align-items-center">
@@ -24,13 +24,13 @@
       </div>
     </div>
   </div>
-  <div class="commentsContainer pr-4 pl-4 pt-2">
+  <div class="commentsContainer {{this.filtersService.theme}} container pr-4 pl-4 pt-2" *ngIf="this.question">
     <div class="row">
       <span class="mb-2">Comments/Answers</span>
     </div>
-    <div *ngIf="!this.question.comments.length">
+    <p *ngIf="!this.question.comments.length">
       There are no comments here...
-    </div>
+    </p>
     <div class="commentContainer d-flex justify-content-between  p-2 mb-3"  *ngFor="let comment of this.question.comments">
       <div class="d-flex">
         <div class="userInfoContainer d-flex flex-column justify-content-start align-items-start mr-3">
@@ -39,9 +39,9 @@
           {{comment.author.split('@')[0]}}
         </span>
         </div>
-        <div class="commentText mr-3 mt-3">
+        <p class="commentText mr-3 mt-3">
           {{comment.text}}
-        </div>
+        </p>
       </div>
       <div class="commentInfo mt-3">
         <span>{{comment.date.seconds * 1000 | date: 'dd.MM.YYYY'}}</span>

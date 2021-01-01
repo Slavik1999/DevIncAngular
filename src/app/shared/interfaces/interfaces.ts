@@ -9,7 +9,7 @@ interface Question {
   onModeration: boolean;
   author: string;
   isResolved: boolean;
-  date: Date;
+  date: number;
   comments: Comment[];
 }
 interface Comment {
@@ -19,4 +19,10 @@ interface Comment {
   text: string;
 }
 
-export {User, Question, Comment};
+interface Filters {
+  resolved: string;
+  categories: string[];
+  time: string;
+}
+
+export {User, Question, Comment, Filters};

@@ -1,1 +1,1 @@
-﻿export const categories: string[] = ['JAVA', 'JS', '.NET', 'PHP'];
+﻿export const categoriesNames: string[] = ['JAVA', 'JS', '.NET', 'PHP'];

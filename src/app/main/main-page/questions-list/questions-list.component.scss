@@ -1,34 +1,70 @@
-$border: 2px solid #686868;
+$borderLight: 2px solid #686868;
+$borderDark: 2px solid #dedede;
+
+.questionListContainer{
+  min-height: 75vh;
+  &.light{
+    background: #ffffff;
+  }
+  &.dark{
+    background-color: rgba(14, 14, 14, 0.93);
+  }
+}
 .questionsList{
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 0.2fr));
+  &.tile{
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 0.2fr));
+  }
+  &.light{
+    background: #ffffff;
+  }
+  &.dark{
+    background-color: rgba(14, 14, 14, 0.93);
+  }
 }
 .questionsListItem{
   min-height: 200px;
-  border: $border;
   border-radius: 3px;
+  &.light{
+    border: $borderLight;
+  }
+  &.dark{
+    border: $borderDark;
+  }
 }
-
-
 .questionMiddle{
-  border-top: $border;
-
+  &.light{
+    border-top: $borderLight;
+  }
+  &.dark{
+    border-top: $borderDark;
+    color: #dedede;
+  }
 }
 
 .questionTitle{
   font-size: 26px;
   font-weight: 600;
-  color: #2b2b2b;
   text-decoration: none;
   transition: all 0.5s;
   width:inherit;
   overflow-wrap: break-word;
-  &:hover{
-    color: black;
+  &.light{
+    color: #2b2b2b;
+    &:hover{
+      color: black;
+    }
   }
+  &.dark{
+    color: #dedede;
+    &:hover{
+      color: #ffffff;
+    }
+  }
+
 }
 
 .questionBtns{
-  border-top: $border;
+  border-top: $borderLight;
 }

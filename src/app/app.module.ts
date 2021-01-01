@@ -25,6 +25,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { PlusButtonComponent } from './main/main-page/plus-button/plus-button.component';
 import { NewQuestionPageComponent } from './main/new-question-page/new-question-page.component';
 import { QuestionPageComponent } from './main/question-page/question-page.component';
+import {FilterPipe} from './shared/pipes/filter.pipe';
+import {SortPipe} from './shared/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { QuestionPageComponent } from './main/question-page/question-page.compon
     PlusButtonComponent,
     NewQuestionPageComponent,
     QuestionPageComponent,
+    FilterPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,

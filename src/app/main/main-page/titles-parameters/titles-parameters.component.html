@@ -1,122 +1,172 @@
-<div class="titlesParameters d-flex justify-content-around align-items-center p-5 m-4">
-  <div class="dropdown">
-    <span class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="titleParametersContainer {{this.filtersService.theme}} p-4">
+  <div class="titlesParameters {{this.filtersService.theme}} d-flex justify-content-around align-items-center p-5">
+    <div class="dropdown">
+    <span class="dropdown-toggle" href="#" id="navbarDropdownFilters" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Filters
     </span>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <form>
-        <div class="form-group d-flex flex-column">
-          <span>Answered:</span>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="answeredTrue" value="true">
-            <label class="form-check-label" for="answeredTrue">true</label>
+      <div class="dropdown-menu {{this.filtersService.theme}}" aria-labelledby="navbarDropdownFilters">
+        <form>
+          <div class="form-group d-flex flex-column">
+            <span>Resolved:</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="resolvedAll" name="exampleResolvedRadios" value=""
+                     [checked]="!this.filtersService.filters.resolved"
+                     (change)="onChangeResolved($event.target.value)"
+              >
+              <label class="form-check-label" for="resolvedAll">all</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="resolvedTrue" value="true" name="exampleResolvedRadios"
+                     [checked]="this.filtersService.filters.resolved === 'true'"
+                     (change)="onChangeResolved($event.target.value)"
+              >
+              <label class="form-check-label" for="resolvedTrue">true</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="resolvedFalse" value="false" name="exampleResolvedRadios"
+                     [checked]="this.filtersService.filters.resolved === 'false'"
+                     (change)="onChangeResolved($event.target.value)"
+              >
+              <label class="form-check-label" for="resolvedFalse">false</label>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="answeredFalse" value="false">
-            <label class="form-check-label" for="answeredFalse">false</label>
+
+          <div class="form-group d-flex flex-column">
+            <span>Categories:</span>
+            <div class="form-check" *ngFor="let category of categoriesNames">
+              <input class="form-check-input" type="checkbox" id=`categories{{category}}` value={{category}}
+                     [checked]="this.filtersService.filters.categories.indexOf(category) >= 0"
+                     (change)="onChangeCategory($event.target.value, $event.target.checked)"
+              >
+              <label class="form-check-label" for=`categories{{category}}`>{{category}}</label>
+            </div>
           </div>
-        </div>
-        <div class="dropdown-divider"></div>
-        <div class="form-group d-flex flex-column">
-          <span>Categories:</span>
-          <div class="form-check" *ngFor="let category of categories">
-            <input class="form-check-input" type="checkbox" id=`categories{{category}}` value={{category}}>
-            <label class="form-check-label" for=`categories{{category}}`>{{category}}</label>
+
+
+          <div class="form-group d-flex flex-column">
+            <span>Time period:</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="timeDay" value="day"
+                     [checked]="this.filtersService.filters.time === time.timeDay"
+                     (change)="onChangeTime($event.target.value)"
+              >
+              <label class="form-check-label" for="timeDay">
+                day
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="timeWeek" value="week"
+                     [checked]="this.filtersService.filters.time === time.timeWeek"
+                     (change)="onChangeTime($event.target.value)"
+              >
+              <label class="form-check-label" for="timeWeek">
+                week
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="timeMonth" value="month"
+                     [checked]="this.filtersService.filters.time === time.timeMonth"
+                     (change)="onChangeTime($event.target.value)"
+              >
+              <label class="form-check-label" for="timeMonth">
+                month
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="timeAll" value="all"
+                     [checked]="this.filtersService.filters.time === time.timeAll"
+                     (change)="onChangeTime($event.target.value)"
+              >
+              <label class="form-check-label" for="timeAll">
+                all
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="dropdown-divider"></div>
-        <div class="form-group d-flex flex-column">
-          <span>Time period:</span>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="timeDay" value="day">
-            <label class="form-check-label" for="timeDay">
-              day
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="timeWeek" value="week">
-            <label class="form-check-label" for="timeWeek">
-              week
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="timeMonth" value="month">
-            <label class="form-check-label" for="timeMonth">
-              month
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="timeAll" value="all" checked>
-            <label class="form-check-label" for="timeAll">
-              all
-            </label>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="dropdown">
-    <span class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown">
+    <span class="dropdown-toggle" href="#" id="navbarDropdownSort" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Sort
     </span>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <form>
-        <div class="form-group d-flex flex-column">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="newQusetions" value="new qusetions" checked>
-            <label class="form-check-label" for="newQusetions">
-              new
-            </label>
+      <div class="dropdown-menu {{this.filtersService.theme}}" aria-labelledby="navbarDropdownSort">
+        <form>
+          <div class="form-group d-flex flex-column">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="newQusetions" value="new"
+                     [checked]="this.filtersService.sort === time.sortNew"
+                     (change)="onChangeSort($event.target.value)"
+              >
+              <label class="form-check-label" for="newQusetions">
+                new
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="oldQusetions" value="old"
+                     [checked]="this.filtersService.sort === time.sortOld"
+                     (change)="onChangeSort($event.target.value)"
+              >
+              <label class="form-check-label" for="oldQusetions">
+                old
+              </label>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="oldQusetions" value="old qusetions">
-            <label class="form-check-label" for="oldQusetions">
-              old
-            </label>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="dropdown">
-    <span class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown">
+    <span class="dropdown-toggle" href="#" id="navbarDropdownSettings" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Settings
     </span>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-      <form>
-        <div class="form-group d-flex flex-column">
-          <span>Theme:</span>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="light" value="light" checked>
-            <label class="form-check-label" for="light">
-              light
-            </label>
+      <div class="dropdown-menu {{this.filtersService.theme}} dropdown-menu-right" aria-labelledby="navbarDropdownSettings">
+        <form>
+          <div class="form-group d-flex flex-column">
+            <span>Theme:</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="light" value="light"
+                     [checked]="this.filtersService.theme === display.themeLight"
+                     (change)="onChangeTheme($event.target.value)"
+              >
+              <label class="form-check-label" for="light">
+                light
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="dark" value="dark"
+                     [checked]="this.filtersService.theme === display.themeDark"
+                     (change)="onChangeTheme($event.target.value)"
+              >
+              <label class="form-check-label" for="dark">
+                dark
+              </label>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="dark" value="dark">
-            <label class="form-check-label" for="dark">
-              dark
-            </label>
+        </form>
+        <form>
+          <div class="form-group d-flex flex-column">
+            <span>Display:</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="tile" value="tile"
+                     [checked]="this.filtersService.display === display.displayTile"
+                     (change)="onChangeDipslay($event.target.value)"
+              >
+              <label class="form-check-label" for="tile">
+                tile
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="string" value="string"
+                     [checked]="this.filtersService.display === display.displayString"
+                     (change)="onChangeDipslay($event.target.value)"
+              >
+              <label class="form-check-label" for="string">
+                string
+              </label>
+            </div>
           </div>
-        </div>
-      </form>
-      <form>
-        <div class="form-group d-flex flex-column">
-          <span>Display:</span>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="tile" value="tile" checked>
-            <label class="form-check-label" for="tile">
-              tile
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exampleRadios" id="string" value="string">
-            <label class="form-check-label" for="string">
-              string
-            </label>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
+
 </div>

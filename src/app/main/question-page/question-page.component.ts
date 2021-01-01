@@ -4,7 +4,8 @@ import {QuestionService} from '../../shared/services/question.service';
 import {Question, User, Comment} from '../../shared/interfaces/interfaces';
 import {AuthService} from '../../shared/services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {profileImg} from '../../shared/constants/profileImg';
+import {profileImg} from '../../shared/constants/profile-img';
+import {FiltersService} from '../../shared/services/filters.service';
 
 @Component({
   selector: 'app-question-page',
@@ -16,7 +17,7 @@ export class QuestionPageComponent implements OnInit {
   question: Question;
   form: FormGroup;
   constructor(private activatedRoute: ActivatedRoute, public questionService: QuestionService, public authService: AuthService,
-              public router: Router, private fb: FormBuilder) { }
+              public router: Router, private fb: FormBuilder, public filtersService: FiltersService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -45,7 +46,9 @@ export class QuestionPageComponent implements OnInit {
     this.changeCommentResolve(isChecked, checkedCommentDate);
     this.changeQuestionResolve();
     this.questionService
-      .updateQuestion(this.activatedRoute.snapshot.params.id, {isResolved: this.question.isResolved, comments: this.question.comments});
+      .updateQuestion(this.activatedRoute.snapshot.params.id,
+        {isResolved: this.question.isResolved,
+        comments: this.question.comments});
   }
   changeCommentResolve(isChecked, checkedCommentDate): void{
     this.question.comments.forEach(comment => {

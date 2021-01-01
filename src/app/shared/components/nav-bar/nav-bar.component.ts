@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {profileImg} from '../../constants/profileImg';
+import {profileImg} from '../../constants/profile-img';
 
 @Component({
   selector: 'app-nav-bar',
