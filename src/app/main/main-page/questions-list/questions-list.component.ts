@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {Filters, Question} from '../../../shared/interfaces/interfaces';
 import { FiltersService } from '../../../shared/services/filters.service';
 import { retry } from 'rxjs/operators';
+import {fakeAsync} from '@angular/core/testing';
 
 @Component({
   selector: 'app-questions-list',
@@ -20,9 +21,28 @@ export class QuestionsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.questionService.getQuetions().then((res) => {
-      this.questionService.questions = res;
-      console.log(res);
+    this.updateQuestions();
+  }
+  approveQuestion(id): void{
+    this.questionService.updateQuestion(id, {onModeration: false}).then(deleted => {
+      this.updateQuestions();
+    }).catch(e => console.error(e));
+  }
+  showComponent(question): boolean{
+    if (question.onModeration){
+      return this.authService.admin || question.author === this.authService.user.email;
+    } else{
+      return true;
+    }
+  }
+  deleteQuestion(id): any{
+    this.questionService.deleteQuestion(id).then(deleted => {
+      this.updateQuestions();
+    }).catch(e => console.error(e));
+  }
+  updateQuestions(): void{
+    this.questionService.getQuetions().then(questions => {
+      this.questionService.questions = questions;
     });
   }
 }

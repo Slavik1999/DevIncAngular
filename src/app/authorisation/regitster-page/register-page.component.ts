@@ -25,7 +25,6 @@ export class RegisterPageComponent implements OnInit {
   onSuccessAuth(cred): void{
     this.email = '';
     this.password = '';
-    // this.authService.isLoggedIn = true;
     this.authService.user = cred.user;
     this.router.navigate(['']);
   }

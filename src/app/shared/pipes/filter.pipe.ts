@@ -2,6 +2,7 @@
 import {Filters, Question} from '../interfaces/interfaces';
 import {FiltersService} from '../services/filters.service';
 import {timeAll, timeDay, timeWeek, timeMonth, msInDay, msInWeek, msInMonth} from '../constants/time-constants';
+import {AuthService} from '../services/auth.service';
 
 @Pipe({
   name: 'filter',
@@ -9,16 +10,18 @@ import {timeAll, timeDay, timeWeek, timeMonth, msInDay, msInWeek, msInMonth} fro
 })
 
 export class FilterPipe implements PipeTransform{
-  constructor(private filtersService: FiltersService) {
+  constructor(private filtersService: FiltersService, private authService: AuthService) {
   }
 
   transform(arr: Question[], filters: Filters): Question[] {
-    const { resolved, categories, time } = filters;
+    const { resolved, categories, time, onModeration, myQuestions } = filters;
     return arr.filter((question) => {
       if (
         this.checkCategories(question.tags, categories) &&
         this.checkResolved(question.isResolved, resolved) &&
-        this.checkDate(time, question.date)
+        this.checkDate(time, question.date) &&
+        this.checkMyQuestions(question.author, myQuestions) &&
+        this.checkOnModeration(question.onModeration, onModeration)
       ) {
         return question;
       } else {
@@ -43,6 +46,20 @@ export class FilterPipe implements PipeTransform{
   }
   checkResolved(questionResolved, filterResolved): boolean {
     return filterResolved.length ? filterResolved.indexOf(questionResolved) >= 0 : true;
+  }
+  checkOnModeration(questionOnModeration, filterOnModeration): boolean {
+    return filterOnModeration.length ? filterOnModeration.indexOf(questionOnModeration) >= 0 : true;
+  }
+  checkMyQuestions(questionAuthor, myQuestionFilter): boolean {
+    if (!myQuestionFilter){
+      return true;
+    }
+    if (myQuestionFilter === 'false'){
+      return questionAuthor !== this.authService.user.email;
+    }
+    if (myQuestionFilter === 'true'){
+      return questionAuthor === this.authService.user.email;
+    }
   }
   checkDate(time, questionDate): boolean{
     const dateNow = new Date().getTime();

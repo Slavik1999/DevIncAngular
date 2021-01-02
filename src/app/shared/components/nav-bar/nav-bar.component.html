@@ -14,7 +14,10 @@
         <a class='navAddQstnBtn nav-link btn btn-light' routerLink='/newquestion'>Add question</a>
       </li>
       <li class="nav-item d-flex flex-wrap justify-content-center dropdown ml-2">
-        <img class="profileImg" [src]="this.profileImg" alt=""/>
+        <div class="d-flex flex-column align-items-center">
+          <img class="profileImg" [src]="this.profileImg" alt=""/>
+          <span class="badge badge-warning" *ngIf="this.authService.admin">ADMIN</span>
+        </div>
         <div class="dropdown">
           <p class="navUserBtn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{this.authService.user.email.split('@')[0]}}

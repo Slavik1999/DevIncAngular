@@ -42,6 +42,55 @@
             </div>
           </div>
 
+          <div class="form-group d-flex flex-column" *ngIf="this.authService.admin">
+            <span>On moderation:</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="onModerationAll" name="exampleOnModerationRadios" value=""
+                     [checked]="!this.filtersService.filters.onModeration"
+                     (change)="onChangeOnModeration($event.target.value)"
+              >
+              <label class="form-check-label" for="onModerationAll">all</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="onModerationTrue" value="true" name="exampleOnModerationRadios"
+                     [checked]="this.filtersService.filters.onModeration === 'true'"
+                     (change)="onChangeOnModeration($event.target.value)"
+              >
+              <label class="form-check-label" for="onModerationTrue">true</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="onModerationFalse" value="false" name="exampleOnModerationRadios"
+                     [checked]="this.filtersService.filters.onModeration === 'false'"
+                     (change)="onChangeOnModeration($event.target.value)"
+              >
+              <label class="form-check-label" for="onModerationFalse">false</label>
+            </div>
+          </div>
+
+          <div class="form-group d-flex flex-column">
+            <span>My questions:</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="myQuestionsAll" name="exampleMyQuestionsRadios" value=""
+                     [checked]="!this.filtersService.filters.myQuestions"
+                     (change)="onChangeMyQuestions($event.target.value)"
+              >
+              <label class="form-check-label" for="myQuestionsAll">all</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="myQuestionsTrue" value="true" name="exampleMyQuestionsRadios"
+                     [checked]="this.filtersService.filters.myQuestions === 'true'"
+                     (change)="onChangeMyQuestions($event.target.value)"
+              >
+              <label class="form-check-label" for="myQuestionsTrue">true</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="myQuestionsFalse" value="false" name="exampleMyQuestionsRadios"
+                     [checked]="this.filtersService.filters.myQuestions === 'false'"
+                     (change)="onChangeMyQuestions($event.target.value)"
+              >
+              <label class="form-check-label" for="myQuestionsFalse">false</label>
+            </div>
+          </div>
 
           <div class="form-group d-flex flex-column">
             <span>Time period:</span>
@@ -148,7 +197,7 @@
             <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="tile" value="tile"
                      [checked]="this.filtersService.display === display.displayTile"
-                     (change)="onChangeDipslay($event.target.value)"
+                     (change)="onChangeDisplay($event.target.value)"
               >
               <label class="form-check-label" for="tile">
                 tile
@@ -157,7 +206,7 @@
             <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" id="string" value="string"
                      [checked]="this.filtersService.display === display.displayString"
-                     (change)="onChangeDipslay($event.target.value)"
+                     (change)="onChangeDisplay($event.target.value)"
               >
               <label class="form-check-label" for="string">
                 string

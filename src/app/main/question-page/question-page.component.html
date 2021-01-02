@@ -18,13 +18,19 @@
         <span class="d-flex align-items-center pr-1 mr-1" *ngFor="let tag of this.question.tags">{{tag}}</span>
       </div>
       <div class="buttonsContainer d-flex flex-wrap justify-content-end w-50">
-        <button class="btn btn-warning" *ngIf="this.authService.user.email === this.question.author"
+        <button class="btn btn-warning" *ngIf="this.authService.user.email === this.question.author && this.question.onModeration"
                 (click)="this.router.navigate(['newquestion/' + this.question.id])"
         >Edit</button>
+        <div *ngIf="this.question.onModeration && this.authService.admin">
+          <button type="button" class="btn btn-success" (click)="approveQuestion(question.id)">Approve</button>
+          <button type="button" class="btn btn-danger" (click)="deleteQuestion(question.id)">Delete</button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="commentsContainer {{this.filtersService.theme}} container pr-4 pl-4 pt-2" *ngIf="this.question">
+  <div class="commentsContainer {{this.filtersService.theme}} container pr-4 pl-4 pt-2"
+       *ngIf="this.question && !this.question.onModeration || this.question && this.authService.admin
+        || this.question && this.authService.user.email === this.question.author">
     <div class="row">
       <span class="mb-2">Comments/Answers</span>
     </div>
@@ -44,15 +50,15 @@
         </p>
       </div>
       <div class="commentInfo mt-3">
-        <span>{{comment.date.seconds * 1000 | date: 'dd.MM.YYYY'}}</span>
-        <form class="mt-2" *ngIf="this.question.author === this.authService.user.email else resolve">
+        <span>{{comment.date | date: 'dd.MM.YYYY'}}</span>
+        <form class="mt-2" *ngIf="this.question.author === this.authService.user.email && !question.onModeration else resolve">
           <div class="form-check">
             <input class="form-check-input" type="checkbox"
-                   id='resolve'
+                   id='resolve{{comment.date}}'
                    [checked]="comment.isResolve"
                    (change)="onChange($event.target.value, $event.target.checked, comment.date)"
             >
-            <label class="form-check-label" for='resolve'>resolve</label>
+            <label class="form-check-label" for='resolve{{comment.date}}'>resolve</label>
           </div>
         </form>
         <ng-template #resolve>

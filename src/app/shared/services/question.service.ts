@@ -45,4 +45,7 @@ export class QuestionService {
   updateQuestion(id, question): any {
     return firebase.firestore().collection('questions').doc(`${id}`).update(question);
   }
+  deleteQuestion(id): any{
+    return firebase.firestore().collection('questions').doc(`${id}`).delete();
+  }
 }

@@ -27,7 +27,7 @@ export class AuthorisationPageComponent implements OnInit {
   SignIn(): void{
     this.loading = true;
     this.authService.SignIn(this.email, this.password).then(cred => {
-      this.onSuccessAuth(cred);
+      this.setAdmin();
       this.loading = false;
     }).catch(error => {
       this.error = error.message;
@@ -35,10 +35,20 @@ export class AuthorisationPageComponent implements OnInit {
       this.loading = false;
     });
   }
+  setAdmin(): void{
+    this.authService.getAdmins().then(admins => {
+      admins.map(admin => {
+        this.authService.admin = admin === this.email;
+        this.router.navigate(['']);
+      });
+    }).catch(e => console.error(e));
+  }
 
   googleAuth(): void {
+    this.loading = true;
     this.authService.GoogleAuth().then(cred => {
-      this.onSuccessAuth(cred);
+      this.setAdmin();
+      this.loading = false;
     }).catch(error => {
       console.error(error);
     });

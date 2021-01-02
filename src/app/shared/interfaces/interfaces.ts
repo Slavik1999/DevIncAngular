@@ -1,6 +1,9 @@
 ﻿interface User {
   email: string;
 }
+interface Admin {
+  email: string;
+}
 interface Question {
   id?: string;
   title: string;
@@ -13,7 +16,7 @@ interface Question {
   comments: Comment[];
 }
 interface Comment {
-  date: Date;
+  date: number;
   isResolve: boolean;
   author: string;
   text: string;
@@ -23,6 +26,8 @@ interface Filters {
   resolved: string;
   categories: string[];
   time: string;
+  onModeration: string;
+  myQuestions: string;
 }
 
-export {User, Question, Comment, Filters};
+export {User, Question, Comment, Filters, Admin};

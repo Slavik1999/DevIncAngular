@@ -21,7 +21,7 @@ export class TitlesParametersComponent implements OnInit {
   filtersForm: FormGroup;
   constructor(private fb: FormBuilder,
               private questionService: QuestionService,
-              private authService: AuthService,
+              public authService: AuthService,
               public filtersService: FiltersService) { }
   ngOnInit(): void {
     this.filtersForm = this.fb.group({
@@ -40,19 +40,26 @@ export class TitlesParametersComponent implements OnInit {
       this.filtersService.filters.categories = categories.filter(x => x !== name);
     }
   }
-  onChangeResolved(name: string): void {
-    this.filtersService.filters.resolved = name;
+  onChangeResolved(resolved: string): void {
+    this.filtersService.filters.resolved = resolved;
   }
-  onChangeTime(name: string): void{
-    this.filtersService.filters.time = name;
+  onChangeTime(time: string): void{
+    this.filtersService.filters.time = time;
   }
-  onChangeSort(name: string): void{
-    this.filtersService.sort = name;
+  onChangeOnModeration(onModeration: string): void{
+    this.filtersService.filters.onModeration = onModeration;
   }
-  onChangeTheme(name: string): void{
-    this.filtersService.theme = name;
+  onChangeMyQuestions(myQuestions: string): void{
+    this.filtersService.filters.myQuestions = myQuestions;
   }
-  onChangeDipslay(name: string): void{
-    this.filtersService.display = name;
+  onChangeSort(sort: string): void{
+    this.filtersService.sort = sort;
   }
+  onChangeTheme(theme: string): void{
+    this.filtersService.theme = theme;
+  }
+  onChangeDisplay(display: string): void{
+    this.filtersService.display = display;
+  }
+
 }

@@ -30,7 +30,7 @@ export class QuestionPageComponent implements OnInit {
 
   submit(): void{
     const newComment: Comment = {
-      date: new Date(),
+      date: new Date().getTime(),
       isResolve: false,
       author: this.authService.user.email,
       text: this.form.value.text
@@ -60,5 +60,16 @@ export class QuestionPageComponent implements OnInit {
   changeQuestionResolve(): void{
     const resolveComment = this.question.comments.find(comment => comment.isResolve === true);
     this.question.isResolved = !!resolveComment;
+  }
+  approveQuestion(id): void{
+    this.questionService.updateQuestion(id, {onModeration: false, comments: []}).then(updated => {
+      this.question.onModeration = false;
+      this.question.comments = [];
+    });
+  }
+  deleteQuestion(id): any{
+    this.questionService.deleteQuestion(id).then(deleted => {
+      this.router.navigate(['']);
+    }).catch(e => console.error(e));
   }
 }

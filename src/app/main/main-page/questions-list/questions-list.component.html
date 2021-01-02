@@ -1,28 +1,36 @@
 <div class="questionListContainer {{this.filtersService.theme}}">
   <div class="questionsList {{this.filtersService.display}} pt-2 mr-4 ml-4">
-    <div class='questionsListItem {{this.filtersService.theme}} d-flex flex-column justify-content-around mt-2'
+    <ng-container
          *ngFor="let question of questionService.questions
            | filter: this.filtersService.filters
            | sort: this.filtersService.sort
-   ">
-      <div class="questionTitleContainer text-center">
-        <a class="questionTitle {{this.filtersService.theme}}" [routerLink]="['question', question.id]">
-          {{question.title}}
-        </a>
-        <div *ngIf="question.isResolved">
-          <span class="badge badge-success">resolved</span>
+     ">
+        <div class="itemContainer {{this.filtersService.theme}} d-flex flex-column justify-content-around mt-2"
+        *ngIf="showComponent(question)">
+          <div class="questionTitleContainer text-center">
+            <a class="questionTitle {{this.filtersService.theme}}" [routerLink]="['question', question.id]">
+              {{question.title}}
+            </a>
+            <div *ngIf="question.isResolved">
+              <span class="badge badge-success">resolved</span>
+            </div>
+            <div *ngIf="question.onModeration">
+              <span class="badge badge-danger">on moderation</span>
+            </div>
+          </div>
+          <div class="questionMiddle {{this.filtersService.theme}} d-flex justify-content-between p-3">
+            <div class="mr-3">{{question.date | date: 'dd.MM.YYYY'}}</div>
+            <div>
+              <span *ngFor="let tag of question.tags">{{tag}} </span>
+            </div>
+          </div>
+          <div class="questionBtns {{this.filtersService.theme}} d-flex justify-content-center p-2"
+               *ngIf="this.authService.admin && question.onModeration"
+          >
+            <button type="button" class="btn btn-success" (click)="approveQuestion(question.id)">Approve</button>
+            <button type="button" class="btn btn-danger" (click)="deleteQuestion(question.id)">Delete</button>
+          </div>
         </div>
-      </div>
-      <div class="questionMiddle {{this.filtersService.theme}} d-flex justify-content-between p-3">
-        <div class="mr-3">{{question.date | date: 'dd.MM.YYYY'}}</div>
-        <div>
-          <span *ngFor="let tag of question.tags">{{tag}} </span>
-        </div>
-      </div>
-      <div class="questionBtns {{this.filtersService.theme}} d-none justify-content-center p-2">
-        <button type="button" class="btn btn-success">Approve</button>
-        <button type="button" class="btn btn-danger">Delete</button>
-      </div>
-    </div>
+    </ng-container>
   </div>
 </div>

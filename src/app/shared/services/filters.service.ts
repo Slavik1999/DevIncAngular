@@ -12,7 +12,9 @@ export class FiltersService {
   filters: Filters = {
     resolved: '',
     categories: [],
-    time: timeAll
+    time: timeAll,
+    onModeration: '',
+    myQuestions: '',
   };
   sort = sortNew;
   theme = themeLight;

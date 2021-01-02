@@ -3,6 +3,10 @@ import {AuthService} from '../../services/auth.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {profileImg} from '../../constants/profile-img';
+import {FiltersService} from '../../services/filters.service';
+import {Filters} from '../../interfaces/interfaces';
+import {sortNew, timeAll} from '../../constants/time-constants';
+import {displayTile, themeLight} from '../../constants/display-constants';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,7 +15,7 @@ import {profileImg} from '../../constants/profile-img';
 })
 export class NavBarComponent implements OnInit {
   profileImg: string = profileImg;
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private filtersService: FiltersService) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +23,16 @@ export class NavBarComponent implements OnInit {
   signOut(): void{
     this.authService.SignOut().then(() => {
       this.authService.user = null;
+      this.filtersService.filters = {
+        resolved: '',
+        categories: [],
+        time: timeAll,
+        onModeration: '',
+        myQuestions: '',
+      };
+      this.filtersService.sort = sortNew;
+      this.filtersService.theme = themeLight;
+      this.filtersService.display = displayTile;
     })
     .catch((error) => {
       console.error(error);

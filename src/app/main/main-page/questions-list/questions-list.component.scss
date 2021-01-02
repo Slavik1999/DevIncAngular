@@ -14,7 +14,7 @@ $borderDark: 2px solid #dedede;
   &.tile{
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 0.2fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 0.4fr));
   }
   &.light{
     background: #ffffff;
@@ -23,7 +23,7 @@ $borderDark: 2px solid #dedede;
     background-color: rgba(14, 14, 14, 0.93);
   }
 }
-.questionsListItem{
+.itemContainer{
   min-height: 200px;
   border-radius: 3px;
   &.light{
@@ -66,5 +66,10 @@ $borderDark: 2px solid #dedede;
 }
 
 .questionBtns{
-  border-top: $borderLight;
+  &.light{
+    border-top: $borderLight;
+  }
+  &.dark{
+    border-top: $borderDark;
+  }
 }
