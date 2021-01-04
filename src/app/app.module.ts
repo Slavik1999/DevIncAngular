@@ -17,7 +17,6 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './shared/services/auth.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TitlesParametersComponent } from './main/main-page/titles-parameters/titles-parameters.component';
 import { QuestionsListComponent } from './main/main-page/questions-list/questions-list.component';
 import { AddQuestionButtonComponent } from './main/main-page/add-question-button/add-question-button.component';
@@ -54,8 +53,7 @@ import { ProfilePageComponent } from './main/profile-page/profile-page.component
 		AngularFirestoreModule,
 		AngularFireAuthModule,
 		FormsModule,
-		ReactiveFormsModule,
-		FontAwesomeModule
+		ReactiveFormsModule
 	],
 	providers: [ AuthGuard, AuthService ],
 	bootstrap: [ AppComponent ]
