@@ -1,5 +1,8 @@
 ﻿interface User {
   email: string;
+  displayName: string;
+  photoURL: string;
+  uid: string;
 }
 interface Admin {
   email: string;
@@ -14,6 +17,7 @@ interface Question {
   isResolved: boolean;
   date: number;
   comments: Comment[];
+  uid: string;
 }
 interface Comment {
   date: number;

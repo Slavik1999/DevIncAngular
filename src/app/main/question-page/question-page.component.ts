@@ -42,7 +42,7 @@ export class QuestionPageComponent implements OnInit {
     });
   }
 
-  onChange(name: string, isChecked: boolean, checkedCommentDate: Date): void{
+  onChange(name: string, isChecked: boolean, checkedCommentDate: number): void{
     this.changeCommentResolve(isChecked, checkedCommentDate);
     this.changeQuestionResolve();
     this.questionService

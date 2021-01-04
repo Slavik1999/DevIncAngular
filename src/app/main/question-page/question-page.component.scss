@@ -78,8 +78,12 @@ $borderColor: rgb(125, 124, 124);
       flex-wrap: wrap;
     }
   }
-  .img{
-    width: 70px;
-    height: 50px;
+  .userInfoContainer{
+    .img{
+      width: 70px;
+      height: 50px;
+    }
+
   }
+
 }

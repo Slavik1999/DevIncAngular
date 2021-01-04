@@ -6,6 +6,7 @@ import { RegisterPageComponent } from './authorisation/regitster-page/register-p
 import { MainPageComponent } from './main/main-page/main-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import {QuestionPageComponent} from './main/question-page/question-page.component';
+import {ProfilePageComponent} from './main/profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: 'login', component: AuthorisationPageComponent },
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'question/:id',
     component: QuestionPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    component: ProfilePageComponent,
     canActivate: [AuthGuard]
   }
 ];

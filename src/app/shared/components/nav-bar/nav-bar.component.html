@@ -15,16 +15,16 @@
       </li>
       <li class="nav-item d-flex flex-wrap justify-content-center dropdown ml-2">
         <div class="d-flex flex-column align-items-center">
-          <img class="profileImg" [src]="this.profileImg" alt=""/>
+          <img class="profileImg" [src]="this.authService.user.photoURL || this.profileImg" alt=""/>
           <span class="badge badge-warning" *ngIf="this.authService.admin">ADMIN</span>
         </div>
         <div class="dropdown">
           <p class="navUserBtn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{this.authService.user.email.split('@')[0]}}
+            {{this.authService.user.displayName || this.authService.user.email.split('@')[0]}}
           </p>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" routerLink="login" (click)='this.signOut()'>Sign Out</a>
-            <a class="dropdown-item" routerLink="#">Profile</a>
+            <a class="dropdown-item" routerLink="profile">Profile</a>
           </div>
         </div>
       </li>

@@ -72,6 +72,7 @@ export class NewQuestionPageComponent implements OnInit {
       author: this.authService.user.email,
       isResolved: false,
       date: new Date().getTime(),
+      uid: this.authService.user.uid,
       comments: []
     };
     this.questionService

@@ -27,6 +27,7 @@ import { NewQuestionPageComponent } from './main/new-question-page/new-question-
 import { QuestionPageComponent } from './main/question-page/question-page.component';
 import {FilterPipe} from './shared/pipes/filter.pipe';
 import {SortPipe} from './shared/pipes/sort.pipe';
+import { ProfilePageComponent } from './main/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {SortPipe} from './shared/pipes/sort.pipe';
     NewQuestionPageComponent,
     QuestionPageComponent,
     FilterPipe,
-    SortPipe
+    SortPipe,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

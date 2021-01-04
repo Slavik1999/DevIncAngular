@@ -1,13 +1,11 @@
-﻿import {Admin, Question, User} from '../interfaces/interfaces';
-import { Injectable, NgZone } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { register } from 'ts-node';
-import {AngularFirestore, DocumentSnapshot, QuerySnapshot} from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+﻿import {User} from '../interfaces/interfaces';
+import {Injectable} from '@angular/core';
+import {QuerySnapshot} from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
 import firebase from 'firebase/app';
+import {Observable} from 'rxjs';
 import DocumentData = firebase.firestore.DocumentData;
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +19,14 @@ export class AuthService {
       if (user){
         this.getAdmins().then(admins => {
           admins.map(admin => {
-            this.admin = admin === user.email;
+            this.admin = admin === user.uid;
           });
         });
       }
     });
+  }
+  updateUser(obj): any{
+    return firebase.auth().currentUser.updateProfile(obj);
   }
   getAuthState(): Observable<User> {
     return this.afAuth.authState;

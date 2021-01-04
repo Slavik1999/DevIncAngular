@@ -1,0 +1,31 @@
+<div class="d-flex profileContainer {{this.filtersService.theme}} flex-column align-items-center pt-4">
+  <div class="profileHeader container p-2 d-flex flex-column align-items-center">
+    <h1 class='text-center'>User Info</h1>
+  </div>
+  <form class='profileForm container p-4 d-flex flex-wrap justify-content-center align-items-start mt-2 ' (ngSubmit)="submit()" [formGroup]="this.form">
+    <img class="profileAvatar mt-2 mr-3" [src]="this.authService.user.photoURL || profileImg" alt="">
+    <div class="formFieldsContainer w-50">
+      <div>
+        <label for="photoURL">User Email</label>
+        <h6>{{this.authService.user.email}}</h6>
+      </div>
+      <div class="form-group">
+        <label for="photoURL">Photo URL</label>
+        <input type="text" class="form-control" id="photoURL"
+               formControlName="photoURL"
+               placeholder="Enter a photo link"
+        >
+      </div>
+      <div class="form-group">
+        <label for="displayName">Name</label>
+        <input type="text" class="form-control" id="displayName"
+               formControlName="displayName"
+               placeholder="Enter your name"
+        />
+      </div>
+      <div class="form-group d-flex justify-content-end">
+        <button type="submit" class='btn btn-success mr-1'>Change</button>
+      </div>
+    </div>
+  </form>
+</div>

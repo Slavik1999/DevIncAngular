@@ -2,7 +2,7 @@
 import {Filters} from '../interfaces/interfaces';
 import {BehaviorSubject} from 'rxjs';
 import {timeAll, sortNew} from '../constants/time-constants';
-import {themeLight, displayTile} from '../constants/display-constants';
+import {themeLight, displayTile, themeDark} from '../constants/display-constants';
 
 @Injectable({
   providedIn: 'root'

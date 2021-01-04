@@ -20,7 +20,7 @@ export class FilterPipe implements PipeTransform{
         this.checkCategories(question.tags, categories) &&
         this.checkResolved(question.isResolved, resolved) &&
         this.checkDate(time, question.date) &&
-        this.checkMyQuestions(question.author, myQuestions) &&
+        this.checkMyQuestions(question.uid, myQuestions) &&
         this.checkOnModeration(question.onModeration, onModeration)
       ) {
         return question;
@@ -50,15 +50,15 @@ export class FilterPipe implements PipeTransform{
   checkOnModeration(questionOnModeration, filterOnModeration): boolean {
     return filterOnModeration.length ? filterOnModeration.indexOf(questionOnModeration) >= 0 : true;
   }
-  checkMyQuestions(questionAuthor, myQuestionFilter): boolean {
+  checkMyQuestions(questionUid, myQuestionFilter): boolean {
     if (!myQuestionFilter){
       return true;
     }
     if (myQuestionFilter === 'false'){
-      return questionAuthor !== this.authService.user.email;
+      return questionUid !== this.authService.user.uid;
     }
     if (myQuestionFilter === 'true'){
-      return questionAuthor === this.authService.user.email;
+      return questionUid === this.authService.user.uid;
     }
   }
   checkDate(time, questionDate): boolean{
