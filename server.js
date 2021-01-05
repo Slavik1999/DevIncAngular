@@ -5,10 +5,10 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/dev-incubator-angular'));
+app.use(express.static(__dirname + '/dist/DevIncubatorAngular'));
 
 app.get('/*', function(req, res) {
-	res.sendFile(path.join(__dirname + '/dist/dev-incubator-angular/index.html'));
+	res.sendFile(path.join(__dirname + '/dist/DevIncubatorAngular/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
