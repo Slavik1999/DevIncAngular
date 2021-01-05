@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-authorisation-page',
@@ -8,26 +9,22 @@ import {Router} from '@angular/router';
   styleUrls: ['./authorisation-page.component.scss']
 })
 export class AuthorisationPageComponent implements OnInit {
-  password: string;
-  email: string;
+  form: FormGroup;
   error: string;
   loading = false;
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      email: this.fb.control('', Validators.required),
+      password: this.fb.control('', Validators.required),
+    });
   }
-
-  onSuccessAuth(cred): void{
-    this.email = '';
-    this.password = '';
-    this.authService.user = cred.user;
-    this.router.navigate(['']);
-  }
-
   SignIn(): void{
+    const {email, password} = this.form.value;
     this.loading = true;
-    this.authService.SignIn(this.email, this.password).then(cred => {
-      this.setAdmin();
+    this.authService.SignIn(email, password).then(cred => {
+      this.router.navigate(['']);
       this.loading = false;
     }).catch(error => {
       this.error = error.message;
@@ -35,20 +32,11 @@ export class AuthorisationPageComponent implements OnInit {
       this.loading = false;
     });
   }
-  setAdmin(): void{
-    this.authService.getAdmins().then(admins => {
-      admins.map(admin => {
-        this.authService.admin = admin === this.email;
-        this.router.navigate(['']);
-      });
-    }).catch(e => console.error(e));
-  }
 
   googleAuth(): void {
     this.loading = true;
     this.authService.GoogleAuth().then(cred => {
-      this.setAdmin();
-      this.loading = false;
+      this.router.navigate(['']);
     }).catch(error => {
       console.error(error);
     });
@@ -62,14 +50,14 @@ export class AuthorisationPageComponent implements OnInit {
 
   githubAuth(): void{
     this.authService.GithubAuth().then(cred => {
-      this.onSuccessAuth(cred);
+      this.router.navigate(['']);
     }).catch(error => {
       this.error = error.message;
     });
   }
   facebookAuth(): void{
     this.authService.FacebookAuth().then(cred => {
-      this.onSuccessAuth(cred);
+      this.router.navigate(['']);
     }).catch(error => {
       this.error = error.message;
     });

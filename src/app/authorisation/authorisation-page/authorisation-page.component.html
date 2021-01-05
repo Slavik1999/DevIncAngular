@@ -1,16 +1,16 @@
 <div class="container d-flex justify-content-center">
-  <form class="authForm mt-5 p-4 col-6">
+  <form class="authForm mt-5 p-4 col-6" [formGroup]="form">
     <h3>Login</h3>
     <div class="form-group pt-2">
-      <span>{{error}}</span>
+      <div>{{error}}</div>
       <label for="regEmail">Email address</label>
-      <input type="email" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
-             id="regEmail" aria-describedby="emailHelp" placeholder="Enter your email">
+      <input type="email" class="form-control"
+             id="regEmail" aria-describedby="emailHelp" placeholder="Enter your email" formControlName="email">
     </div>
     <div class="form-group">
       <label for="regPassword">Password</label>
-      <input type="password" class="form-control" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
-             id="regPassword" placeholder="Enter your password">
+      <input type="password" class="form-control"
+             id="regPassword" placeholder="Enter your password" formControlName="password">
     </div>
     <button type="submit" (click)="SignIn()" class="btn btn-danger mr-1">Enter</button>
     <div class="spinner-border text-danger ml-2" [hidden]="!loading" role="status">
@@ -18,9 +18,6 @@
     </div>
     <div class="mt-1">
       <button (click)="googleAuth()" class="btn btn-info">Google</button>
-<!--      <button (click)="githubAuth()" class="btn btn-info">Git</button>-->
-<!--      <button (click)="facebookAuth()" class="btn btn-info">FaceBook</button>-->
     </div>
   </form>
-
 </div>

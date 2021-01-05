@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	production: true,
+	production: false,
 	apiKey: 'AIzaSyB_csZl5cbWmfuCFVh7rnxk4IIifiI9_ZA',
 	authDomain: 'devincubatorangular.firebaseapp.com',
 	databaseURL: 'https://devincubatorangular-default-rtdb.europe-west1.firebasedatabase.app',
