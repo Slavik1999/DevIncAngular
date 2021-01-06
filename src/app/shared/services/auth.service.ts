@@ -1,10 +1,10 @@
-﻿import {User} from '../interfaces/interfaces';
-import {Injectable} from '@angular/core';
-import {QuerySnapshot} from '@angular/fire/firestore';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {Router} from '@angular/router';
+﻿import { User } from '../interfaces/interfaces';
+import { Injectable } from '@angular/core';
+import { QuerySnapshot } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import firebase from 'firebase/app';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
@@ -16,16 +16,14 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, public router: Router) {
     this.afAuth.authState.subscribe((user) => {
       this.user = user;
-      if (user){
-        this.getAdmins().then(admins => {
-          admins.map(admin => {
-            this.admin = admin === user.uid;
-          });
+      if (user) {
+        this.getAdmins().then((admins) => {
+          this.admin = admins.some(admin => admin === user.uid);
         });
       }
     });
   }
-  updateUser(obj): any{
+  updateUser(obj): any {
     return firebase.auth().currentUser.updateProfile(obj);
   }
   getAuthState(): Observable<User> {
@@ -52,8 +50,8 @@ export class AuthService {
   SignOut(): any {
     return this.afAuth.signOut();
   }
-  getAdmins(): Promise<string[]>{
-    return firebase.firestore().collection('admins').get().then( (res: QuerySnapshot<DocumentData>) => {
+  getAdmins(): Promise<string[]> {
+    return firebase.firestore().collection('admins').get().then((res: QuerySnapshot<DocumentData>) => {
       return res.docs.map((admin) => {
         return admin.data().email;
       });

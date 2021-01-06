@@ -3,10 +3,8 @@ import {categoriesNames} from '../../../shared/constants/categories-constants';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {QuestionService} from '../../../shared/services/question.service';
 import {AuthService} from '../../../shared/services/auth.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Filters} from '../../../shared/interfaces/interfaces';
 import {FiltersService} from '../../../shared/services/filters.service';
-import {displayTile, displayString, themeLight, themeDark} from '../../../shared/constants/display-constants';
+import {displayTile, displayString, themeLight, themeDark, themes} from '../../../shared/constants/display-constants';
 import {timeAll, timeMonth, timeDay, timeWeek, sortNew, sortOld} from '../../../shared/constants/time-constants';
 
 @Component({
@@ -15,6 +13,7 @@ import {timeAll, timeMonth, timeDay, timeWeek, sortNew, sortOld} from '../../../
   styleUrls: ['./titles-parameters.component.scss']
 })
 export class TitlesParametersComponent implements OnInit {
+  themes: string[] = themes;
   categoriesNames: string[] = categoriesNames;
   display = {displayTile, displayString, themeLight, themeDark};
   time = {timeAll, timeMonth, timeDay, timeWeek, sortNew, sortOld};

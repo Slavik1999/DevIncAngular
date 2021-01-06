@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../shared/services/auth.service';
 import {profileImg} from '../../shared/constants/profile-img';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import firebase from 'firebase';
 import {FiltersService} from '../../shared/services/filters.service';
 
 @Component({

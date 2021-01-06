@@ -1,4 +1,4 @@
-<div class="containerAll {{this.filtersService.theme}} pt-4" >
+<div class="containerQuestionAndComments {{this.filtersService.theme}} pt-4" >
   <div class="questionContainer {{this.filtersService.theme}} container  pr-5 pl-5 pt-3 pb-4" *ngIf="this.question">
     <div class="row d-flex justify-content-between">
       <span class="author">{{this.question.author}}</span>
@@ -38,11 +38,11 @@
     </p>
     <div class="commentContainer d-flex justify-content-between  p-2 mb-3"  *ngFor="let comment of this.question.comments">
       <div class="d-flex">
-        <div class="userInfoContainer d-flex flex-column justify-content-start align-items-start mr-3">
+        <div class="userInfoContainer d-flex flex-column justify-content-start align-items-center mr-3">
           <img class="img" [src]='this.profileImg' alt=""/>
-          <div class="commentAuthor">
+          <span class="commentAuthor">
           {{comment.author}}
-          </div>
+          </span>
         </div>
         <p class="commentText mr-3 mt-3">
           {{comment.text}}
@@ -55,7 +55,7 @@
             <input class="form-check-input" type="checkbox"
                    id='resolve{{comment.date}}'
                    [checked]="comment.isResolve"
-                   (change)="onChange($event.target.value, $event.target.checked, comment.date)"
+                   (change)="onChange($event.target.value, $event.target.checked, comment)"
             >
             <label class="form-check-label" for='resolve{{comment.date}}'>resolve</label>
           </div>

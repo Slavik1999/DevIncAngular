@@ -1,4 +1,133 @@
-/* You can add global styles to this file, and also import other style files */
+$borderLight: 2px solid #686868;
+$bgColorLight: #ffffff;
+$bgQuestionFormLight: #ffffff;
+$inputsTextColorLight: #000;
+$bgParametersColorLight: #d9d8d8;
+$bgDropdownMenuLight: #ffffff;
+$dropdownTextColorLight: rgb(59, 59, 59);
+$parametersTextColorLight: #000;
+$textColorLight: rgb(59, 59, 59);
+$textColorHoverLight: #000;
+$bgQuestionFormsLight: #fff;
+
+$borderDark: 2px solid #dedede;
+$bgColorDark: rgba(14, 14, 14, 0.93);
+$bgQuestionFormDark: rgb(59, 59, 59);
+$inputsTextColorDark: #ffffff;
+$bgParametersColorDark: #787878;
+$bgDropdownMenuDark: #787878;
+$dropdownTextColorDark: #dedede;
+$parametersTextColorDark: #dedede;
+$textColorDark: #dedede;
+$textColorHoverDark : #ffffff;
+$bgQuestionFormsDark: rgb(59, 59, 59);
+
+
+@mixin questionList($bgColor, $border, $textColor, $textColorHover){
+  &.questionListContainer{
+    background: $bgColor;
+  }
+  &.questionsList{
+    background: $bgColor;
+  }
+  &.itemContainer{
+    border: $border;
+  }
+  &.questionMiddle{
+    border-top: $border;
+    color: $textColor;
+  }
+  &.questionTitle{
+    color: $textColor;
+    &:hover{
+      color: $textColorHover;
+    }
+  }
+  &.questionBtns{
+    border-top: $border;
+  }
+}
+@mixin titleParameters($bgColor, $bgParametersColor, $parametersTextColor, $bgDropdownMenu, $dropdownTextColor){
+  &.titleParametersContainer{
+    background: $bgColor;
+  }
+  &.titlesParameters {
+    background-color: $bgParametersColor;
+    color: $parametersTextColor;
+  }
+  &.dropdown-menu{
+    color: $dropdownTextColor;
+    background-color: $bgDropdownMenu;
+  }
+}
+@mixin newQuestion($bgColor, $bgQuestionForm, $textColor, $inputsTextColor){
+  &.newQuestionFormContainer{
+    background: $bgColor;
+  }
+  &.newQuestionForm {
+    background: $bgQuestionForm;
+    h1, label, span{
+      color: $textColor;
+    }
+    input, textarea {
+      color: $inputsTextColor;
+      background: $bgColor;
+    }
+  }
+}
+@mixin profile($bgColor, $textColor, $inputsTextColor){
+  &.profileContainer{
+    background: $bgColor;
+    h1, label, span, h6{
+      color: $textColor;
+    }
+    input, textarea {
+      color: $inputsTextColor;
+      background: $bgColor;
+    }
+  }
+}
+@mixin question($bgColor, $bgForms, $textColor, $inputsTextColor){
+  &.containerQuestionAndComments{
+    background: $bgColor;
+  }
+  &.questionContainer{
+    background: $bgForms;
+    h1, label, span, p{
+      color: $textColor;
+    }
+    input, textarea {
+      background: $bgColor;
+    }
+  }
+  &.commentsContainer{
+    background: $bgForms;
+    h1, label, span, p {
+      color: $textColor;
+    }
+    input, textarea {
+      color: $inputsTextColor;
+      background: $bgColor;
+    }
+  }
+}
+
 body {
-	min-height: 100vh;
+  min-height: 100vh;
+}
+
+.light{
+  @include questionList($bgColorLight, $borderLight, $textColorLight, $textColorHoverLight);
+  @include titleParameters($bgColorLight, $bgParametersColorLight, $parametersTextColorLight, $bgDropdownMenuLight, $dropdownTextColorLight);
+  @include newQuestion($bgColorLight, $bgQuestionFormLight, $textColorLight, $inputsTextColorLight);
+  @include profile($bgColorLight, $textColorLight, $inputsTextColorLight);
+  @include question($bgColorLight, $bgQuestionFormsLight, $textColorLight, $inputsTextColorLight);
+}
+
+.dark{
+  @include questionList($bgColorDark, $borderDark, $textColorDark, $textColorHoverDark);
+  @include titleParameters($bgColorDark, $bgParametersColorDark, $parametersTextColorDark, $bgDropdownMenuDark, $dropdownTextColorDark);
+  @include newQuestion($bgColorDark, $bgQuestionFormDark,$textColorDark, $inputsTextColorDark);
+  @include profile($bgColorDark, $textColorDark, $inputsTextColorDark);
+  @include question($bgColorDark, $bgQuestionFormsDark, $textColorDark, $inputsTextColorDark);
 }

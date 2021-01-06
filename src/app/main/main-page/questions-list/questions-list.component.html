@@ -1,5 +1,5 @@
-<div class="questionListContainer {{this.filtersService.theme}}">
-  <div class="questionsList {{this.filtersService.display}} pt-2 mr-4 ml-4">
+<div class="{{this.filtersService.theme}} questionListContainer">
+  <div class="{{this.filtersService.display}} questionsList pt-2 mr-4 ml-4">
     <ng-container
          *ngFor="let question of questionService.questions
            | filter: this.filtersService.filters

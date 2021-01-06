@@ -1,3 +1,4 @@
 [1231/110821.743:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\farmi\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\030e931c-39fe-4264-bd37-7735c404bb8c: Системе не удается найти указанный путь. (0x3)
 [1231/110821.793:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
 [0101/211603.468:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[0105/203116.580:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)

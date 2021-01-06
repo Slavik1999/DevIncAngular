@@ -12,7 +12,9 @@ import { AuthorisationPageComponent } from './authorisation/authorisation-page/a
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { MainPageComponent } from './main/main-page/main-page.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthGuard } from './shared/guards/auth.guard';
+import { AuthorizedGuard } from './shared/guards/authorized.guard';
+import { UnauthorizedGuard } from './shared/guards/unauthorized.guard';
+
 
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,35 +29,37 @@ import { QuestionPageComponent } from './main/question-page/question-page.compon
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { SortPipe } from './shared/pipes/sort.pipe';
 import { ProfilePageComponent } from './main/profile-page/profile-page.component';
+import {QuestionService} from './shared/services/question.service';
+import {FiltersService} from './shared/services/filters.service';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		RegisterPageComponent,
-		AuthorisationPageComponent,
-		NavBarComponent,
-		MainPageComponent,
-		TitlesParametersComponent,
-		QuestionsListComponent,
-		AddQuestionButtonComponent,
-		FooterComponent,
-		PlusButtonComponent,
-		NewQuestionPageComponent,
-		QuestionPageComponent,
-		FilterPipe,
-		SortPipe,
-		ProfilePageComponent
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		AngularFireModule.initializeApp(environment),
-		AngularFirestoreModule,
-		AngularFireAuthModule,
-		FormsModule,
-		ReactiveFormsModule
-	],
-	providers: [ AuthGuard, AuthService ],
-	bootstrap: [ AppComponent ]
+  declarations: [
+    AppComponent,
+    RegisterPageComponent,
+    AuthorisationPageComponent,
+    NavBarComponent,
+    MainPageComponent,
+    TitlesParametersComponent,
+    QuestionsListComponent,
+    AddQuestionButtonComponent,
+    FooterComponent,
+    PlusButtonComponent,
+    NewQuestionPageComponent,
+    QuestionPageComponent,
+    FilterPipe,
+    SortPipe,
+    ProfilePageComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [ AuthorizedGuard, UnauthorizedGuard, AuthService, QuestionService, FiltersService],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {}

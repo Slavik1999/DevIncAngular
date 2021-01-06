@@ -1,12 +1,6 @@
 $borderColor: rgb(125, 124, 124);
 .newQuestionFormContainer{
   height: 92vh;
-  &.light{
-    background: #ffffff;
-  }
-  &.dark{
-    background-color: rgba(14, 14, 14, 0.93);
-  }
 }
 .newQuestionForm {
 	min-width: 300px;
@@ -20,24 +14,4 @@ $borderColor: rgb(125, 124, 124);
       border-bottom: 2px solid $borderColor;
     }
   }
-  &.light{
-    background: #ffffff;
-    h1{
-      color: rgb(59, 59, 59);
-    }
-    input, textarea {
-      background: #ffffff;
-    }
-  }
-  &.dark{
-    background-color: #5f5f5f;
-    h1, label, span{
-      color: #dedede;
-    }
-    input, textarea{
-      color: white;
-      background-color: rgba(14, 14, 14, 0.93);
-    }
-  }
-
 }

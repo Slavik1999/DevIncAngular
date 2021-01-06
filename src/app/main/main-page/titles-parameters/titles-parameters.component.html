@@ -171,22 +171,13 @@
         <form>
           <div class="form-group d-flex flex-column">
             <span>Theme:</span>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="light" value="light"
-                     [checked]="this.filtersService.theme === display.themeLight"
+            <div class="form-check" *ngFor="let theme of themes">
+              <input class="form-check-input" type="radio" name="exampleRadios{{theme}}" id={{theme}} value={{theme}}
+                     [checked]="this.filtersService.theme === theme"
                      (change)="onChangeTheme($event.target.value)"
               >
-              <label class="form-check-label" for="light">
-                light
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="dark" value="dark"
-                     [checked]="this.filtersService.theme === display.themeDark"
-                     (change)="onChangeTheme($event.target.value)"
-              >
-              <label class="form-check-label" for="dark">
-                dark
+              <label class="form-check-label" for={{theme}}>
+                {{theme}}
               </label>
             </div>
           </div>

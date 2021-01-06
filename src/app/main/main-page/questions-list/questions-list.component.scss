@@ -1,14 +1,5 @@
-$borderLight: 2px solid #686868;
-$borderDark: 2px solid #dedede;
-
 .questionListContainer{
   min-height: 75vh;
-  &.light{
-    background: #ffffff;
-  }
-  &.dark{
-    background-color: rgba(14, 14, 14, 0.93);
-  }
 }
 .questionsList{
   &.tile{
@@ -16,31 +7,10 @@ $borderDark: 2px solid #dedede;
     gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(220px, 0.4fr));
   }
-  &.light{
-    background: #ffffff;
-  }
-  &.dark{
-    background-color: rgba(14, 14, 14, 0.93);
-  }
 }
 .itemContainer{
   min-height: 200px;
   border-radius: 3px;
-  &.light{
-    border: $borderLight;
-  }
-  &.dark{
-    border: $borderDark;
-  }
-}
-.questionMiddle{
-  &.light{
-    border-top: $borderLight;
-  }
-  &.dark{
-    border-top: $borderDark;
-    color: #dedede;
-  }
 }
 
 .questionTitle{
@@ -50,26 +20,4 @@ $borderDark: 2px solid #dedede;
   transition: all 0.5s;
   width:inherit;
   overflow-wrap: break-word;
-  &.light{
-    color: #2b2b2b;
-    &:hover{
-      color: black;
-    }
-  }
-  &.dark{
-    color: #dedede;
-    &:hover{
-      color: #ffffff;
-    }
-  }
-
-}
-
-.questionBtns{
-  &.light{
-    border-top: $borderLight;
-  }
-  &.dark{
-    border-top: $borderDark;
-  }
 }

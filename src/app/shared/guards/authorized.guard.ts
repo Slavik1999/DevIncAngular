@@ -9,13 +9,20 @@
 
 
 @Injectable()
-export class AuthGuard implements CanActivate{
+export class AuthorizedGuard implements CanActivate{
 
   constructor(private router: Router, public authService: AuthService){}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>{
     return this.authService.getAuthState().pipe(
-      map(user => !!user)
+      map(user => {
+        if (user){
+          return true;
+        } else{
+          this.router.navigate(['login']);
+          return false;
+        }
+      })
     );
   }
 }

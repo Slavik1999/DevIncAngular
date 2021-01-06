@@ -1,34 +1,10 @@
-.titleParametersContainer{
-  &.light{
-    background: #ffffff;
-  }
-  &.dark{
-    background-color: rgba(14, 14, 14, 0.93);
-  }
-}
 .titlesParameters {
 	height: 60px;
 	min-width: 240px;
 	border-radius: 5px;
-  &.light{
-    background-color: #d9d8d8;
-  }
-  &.dark{
-    background-color: #787878;
-    color: #f1f1f1;
-  }
 	.dropdown-toggle {
 		margin-right: 10px;
 	}
-}
-.dropdown-menu{
-  &.light{
-    background-color: #ffffff;
-  }
-  &.dark{
-    background-color: #787878;
-    color: #f1f1f1;
-  }
 }
 .dropdown-menu.show {
 	padding: 5px 0px 0px 10px;

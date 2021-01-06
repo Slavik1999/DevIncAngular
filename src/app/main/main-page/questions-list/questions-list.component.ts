@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
 import { QuestionService } from '../../../shared/services/question.service';
 import { Router } from '@angular/router';
-import {Filters, Question} from '../../../shared/interfaces/interfaces';
 import { FiltersService } from '../../../shared/services/filters.service';
-import { retry } from 'rxjs/operators';
-import {fakeAsync} from '@angular/core/testing';
 
 @Component({
   selector: 'app-questions-list',

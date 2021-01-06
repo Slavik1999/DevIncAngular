@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { QuestionService } from '../../shared/services/question.service';
 import { AuthService } from '../../shared/services/auth.service';
-import { formatDate } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Question } from '../../shared/interfaces/interfaces';
 import { categoriesNames } from '../../shared/constants/categories-constants';
-import {FiltersService} from '../../shared/services/filters.service';
-import {newArray} from '@angular/compiler/src/util';
+import { FiltersService } from '../../shared/services/filters.service';
 
 @Component({
   selector: 'app-new-question-page',
@@ -48,7 +46,7 @@ export class NewQuestionPageComponent implements OnInit {
       this.questionService.getQuestion(this.activatedRoute.snapshot.params.id).then((res) => {
         this.form.patchValue(res);
         const tags = this.form.controls.tags as FormArray;
-        res.tags.map(tag => tags.push(new FormControl(tag)));
+        res.tags.map((tag) => tags.push(new FormControl(tag)));
         this.question = res;
       });
     }

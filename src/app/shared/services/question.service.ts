@@ -1,11 +1,7 @@
 ﻿import { Injectable, NgZone } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { register } from 'ts-node';
-import { AngularFirestore, DocumentReference, DocumentSnapshot, QuerySnapshot } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { DocumentReference, DocumentSnapshot, QuerySnapshot } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
-import {BehaviorSubject, Observable} from 'rxjs';
 import DocumentData = firebase.firestore.DocumentData;
 import { Question } from '../interfaces/interfaces';
 
