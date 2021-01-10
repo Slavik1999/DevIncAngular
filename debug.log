@@ -2,3 +2,9 @@
 [1231/110821.793:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
 [0101/211603.468:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
 [0105/203116.580:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[0109/153759.695:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[0109/155844.746:ERROR:process_info.cc(359)] UncheckedAllocate
+[0109/155844.785:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\farmi\AppData\Local\Temp\karma-34851296\Crashpad\attachments\31ffd592-6edd-420f-946f-098ade1905a4: Системе не удается найти указанный путь. (0x3)
+[0109/171133.016:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\farmi\AppData\Local\Temp\karma-34851296\Crashpad\attachments\9fae210e-79b2-4ff3-ad3a-1c3237897477: Системе не удается найти указанный путь. (0x3)
+[0110/211639.746:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[0110/215803.291:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)

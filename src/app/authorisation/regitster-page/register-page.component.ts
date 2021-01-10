@@ -31,6 +31,7 @@ export class RegisterPageComponent implements OnInit {
     const {email, password} = this.form.value;
     this.loading = true;
     this.authService.SignUp(email, password).then(cred => {
+      // console.log(cred);
       this.router.navigate(['']);
       this.loading = false;
     }).catch(error => {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {categoriesNames} from '../../../shared/constants/categories-constants';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {QuestionService} from '../../../shared/services/question.service';
 import {AuthService} from '../../../shared/services/auth.service';
 import {FiltersService} from '../../../shared/services/filters.service';
 import {displayTile, displayString, themeLight, themeDark, themes} from '../../../shared/constants/display-constants';
@@ -19,7 +18,6 @@ export class TitlesParametersComponent implements OnInit {
   time = {timeAll, timeMonth, timeDay, timeWeek, sortNew, sortOld};
   filtersForm: FormGroup;
   constructor(private fb: FormBuilder,
-              private questionService: QuestionService,
               public authService: AuthService,
               public filtersService: FiltersService) { }
   ngOnInit(): void {
